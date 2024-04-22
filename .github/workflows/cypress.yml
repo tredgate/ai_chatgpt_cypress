@@ -15,18 +15,19 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          build: npm run build
           start: npm start
       - name: Upload Cypress Artifacts
         uses: actions/upload-artifact@v4
-        if: failure() # Upload logs pouze pokud testy selžou
+        if: failure()
+        # Upload logs pouze pokud testy selžou
         with:
           name: cypress-screenshots
           path: cypress/screenshots
 
       - name: Upload Cypress Videos
         uses: actions/upload-artifact@v4
-        if: failure() # Upload logs pouze pokud testy selžou
+        if: failure()
+        # Upload logs pouze pokud testy selžou
         with:
           name: cypress-videos
           path: cypress/videos
