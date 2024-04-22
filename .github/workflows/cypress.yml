@@ -10,24 +10,19 @@ jobs:
         uses: actions/checkout@v4
       - name: Install Dependencies
         run: npm install
-      # Install npm dependencies, cache them correctly
-      # and run all Cypress tests
+      # Run all Cypress tests
       - name: Cypress run
         uses: cypress-io/github-action@v6
-        with:
-          start: npm start
       - name: Upload Cypress Artifacts
         uses: actions/upload-artifact@v4
-        if: failure()
-        # Upload logs pouze pokud testy selžou
+        if: failure() # Upload logs only if tests fail
         with:
           name: cypress-screenshots
           path: cypress/screenshots
 
       - name: Upload Cypress Videos
         uses: actions/upload-artifact@v4
-        if: failure()
-        # Upload logs pouze pokud testy selžou
+        if: failure() # Upload logs only if tests fail
         with:
           name: cypress-videos
           path: cypress/videos
