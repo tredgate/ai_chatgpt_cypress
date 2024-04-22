@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Projekt 1",
+    "description": "Popis projektu 1",
+    "dueDate": "2024-05-01"
+  },
+  {
+    "name": "Projekt 2",
+    "description": "Popis projektu 2",
+    "dueDate": "2024-06-01"
+  },
+  {
+    "name": "Projekt 3",
+    "description": "Popis projektu 3",
+    "dueDate": "2024-07-01"
+  }
+]
