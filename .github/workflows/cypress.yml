@@ -6,33 +6,26 @@ jobs:
   cypress-run:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: "14" # Nebo jakoukoli jinou verzi Node.js, kterou používáte
-
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Install Dependencies
         run: npm install
-
-      - name: Run Cypress Tests
-        uses: cypress-io/github-action@v2
+      # Install npm dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
         with:
-          start: npm start # Příkaz pro spuštění vaší aplikace, pokud je potřeba
-          wait-on: "https://tredgate.com/pmtool" # URL, na které běží vaše aplikace
-          wait-on-timeout: 60 # Čekání na spuštění aplikace v sekundách
-
+          build: npm run build
+          start: npm start
       - name: Upload Cypress Artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         if: failure() # Upload logs pouze pokud testy selžou
         with:
           name: cypress-screenshots
           path: cypress/screenshots
 
       - name: Upload Cypress Videos
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         if: failure() # Upload logs pouze pokud testy selžou
         with:
           name: cypress-videos
